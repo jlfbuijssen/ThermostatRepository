@@ -1006,7 +1006,6 @@ containing a value of this type.
         public static final int image=0x7f050027;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
-        public static final int livetab=0x7f05003c;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
@@ -1030,6 +1029,7 @@ containing a value of this type.
         public static final int showTitle=0x7f050006;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
+        public static final int tab1=0x7f05003c;
         public static final int tab2=0x7f05003d;
         public static final int tab3=0x7f05003e;
         public static final int tabMode=0x7f050002;
