@@ -17,6 +17,32 @@
         android:layout_alignParentBottom = "true"
         android:layout_alignParentLeft = "true">
         
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent" >
+            
+            <LinearLayout
+                android:id = "@+id/livetab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+            </LinearLayout>
+            
+            <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+        </FrameLayout> 
     </TabHost>
    
     <TabWidget
