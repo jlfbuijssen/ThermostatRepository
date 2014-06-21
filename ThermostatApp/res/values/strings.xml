@@ -14,6 +14,16 @@
     <string name = "str_SunIcon"> Day temperature</string>
     <string name = "str_MoonIcon"> Night temperature</string>
     
-    <color name= "dark_gray">#ff222222</color>
+    <string name = "str_upArrow"> Increase current temperature</string>
+    <string name = "str_downArrow"> Decrease current temperature</string>
+    
+    <string name= "str_manualToggle"> M </string>
+    <string name= "str_vacationToggle"> V </string>
+    
+    <color name= "dark_gray">#ff333333</color>
+    <color name= "light_gray">#aa666666</color>
+    <color name= "black">#ff000000</color>
+    <color name = "holo_dark_blue">#ff1095dd</color>
+    <color name = "white"> #ffffffff</color>
 
 </resources>

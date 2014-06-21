@@ -19,7 +19,7 @@
 	    android:layout_height = "wrap_content"
 	    android:gravity = "right"
 	    android:orientation = "horizontal"
-	    android:padding = "20dp">
+	    android:padding = "8dp">
 
 		<ImageView
 		    android:id="@+id/imageView_sun"
@@ -39,14 +39,39 @@
 		    android:contentDescription="@string/str_MoonIcon"
 		    android:enabled = "false"
 		    />
-	    
+		<TextView
+		    android:id= "@+id/textView_manualToggle"
+		    android:layout_width = "wrap_content"
+		    android:layout_height = "match_parent"
+		    android:gravity= "center_vertical"
+		    android:text="@string/str_manualToggle"
+		    android:textColor = "@color/light_gray"
+		    android:enabled = "false"
+		    android:textSize = "36sp"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		    />
+		<TextView
+		    android:id = "@+id/textView_vacationToggle"
+		    android:layout_width = "wrap_content"
+		    android:layout_height= "match_parent"
+		    android:gravity= "center_vertical"
+		    android:text="@string/str_vacationToggle"
+		    android:textColor = "@color/light_gray"
+		    android:enabled = "false"
+		    android:textSize = "36sp"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		    />
+ 
 	</LinearLayout>
+	
 	<LinearLayout
 	    android:id="@+id/live_layout"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="0dp"
 	    android:gravity="center_horizontal|center_vertical"
 	    android:orientation="horizontal"
+	    android:layout_weight = "1"
+	    android:baselineAligned="false"
 		>
 
 	    <LinearLayout
@@ -64,6 +89,7 @@
 	            android:layout_margin="20dp"
 	            android:background = "@color/dark_gray"
 	            android:src="@android:drawable/arrow_up_float"
+	            android:contentDescription="@string/str_upArrow"
 	            />
 
 	        <LinearLayout
@@ -81,7 +107,8 @@
 	                android:layout_marginRight="2dp"
 	                android:layout_marginTop="10dp"
 	                android:text="@string/str_temperature"
-	                android:textSize="40sp" />
+	                android:textSize="40sp"
+	                android:textColor = "@color/holo_dark_blue" />
 
 	            <TextView
 	                android:id="@+id/unit_temp_textview"
@@ -92,7 +119,8 @@
 	                android:layout_marginRight="32dp"
 	                android:layout_marginTop="10dp"
 	                android:text="@string/str_celcius_unit"
-	                android:textSize="40sp" />
+	                android:textSize="40sp"
+	                android:textColor = "@color/holo_dark_blue" />
 	        </LinearLayout>
 
 	        <ImageButton
@@ -101,11 +129,14 @@
 	            android:layout_height="wrap_content"
 	            android:layout_margin="20dp"
 	            android:background="@color/dark_gray"
-	            android:src="@android:drawable/arrow_down_float"/>
+	            android:src= "@android:drawable/arrow_down_float"
+	            android:contentDescription = "@string/str_downArrow"/>
 
 	        
 
 	    </LinearLayout>
+
+
 
 	    <LinearLayout
 	        android:id="@+id/layout_additional_info"
@@ -119,35 +150,81 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:orientation="vertical"
+	            android:padding = "10dp"
+	            android:layout_marginRight="22dp"
 	             >
 
 	            <TextView
 	                android:id="@+id/date_textview"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="@string/str_date" />
+	                android:text="@string/str_date"
+	                android:textColor= "@color/white"
+	                android:textSize = "18sp" />
 
 	            <TextView
 	                android:id="@+id/day_textview"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:text="@string/str_day" 
-	                android:layout_marginBottom="32dp"/>
+	                android:layout_marginBottom="32dp"
+	                android:textColor= "@color/white"
+	                android:textSize = "16sp"/>
 	            <TextView
 	                android:id= "@+id/next_switch_textview"
 	                android:layout_width = "wrap_content"
 	                android:layout_height = "wrap_content"
 	                android:text="@string/str_next_switch"
+	                android:textColor= "@color/white"
+	                android:textSize = "18sp"
 	                />
 	            <TextView
 	                android:id= "@+id/next_switch_time_textview"
 	                android:layout_width ="wrap_content"
 	                android:layout_height = "wrap_content"
 	                android:text="@string/str_nswitch_time"
+	                android:textColor= "@color/white"
+	                android:textSize = "18sp"
 	                />
 	        </LinearLayout>
 	    </LinearLayout>
 	</LinearLayout>
+	
+	<LinearLayout
+	    android:id="@+id/navigation_bar_layout"
+	    android:layout_width = "match_parent"
+	    android:layout_height = "wrap_content"
+	    android:background= "@color/black"
+	    android:orientation =  "horizontal"
+	    android:gravity = "bottom"
+	    >
+	    <ImageButton 
+	        android:id="@+id/imageButton_liveView"
+	        android:layout_width = "0dp"
+	        android:layout_height = "wrap_content"
+	        android:layout_weight = "1"
+	        android:background="@color/black"
+	        android:src = "@android:drawable/stat_notify_more"/>
+	    
+	    <ImageButton
+	        android:id="@+id/imageButton_weekProgram"
+	        android:layout_width = "0dp"
+	        android:layout_height = "wrap_content"
+	        android:layout_weight = "1"
+	        android:background="@color/black"
+	        android:src = "@android:drawable/ic_menu_week"
+	        />
+	    <ImageButton
+	        android:id="@+id/imageButton_preferences"
+	        android:layout_width = "0dp"
+	        android:layout_height = "wrap_content"
+	        android:layout_weight = "1"
+	        android:background="@color/black"
+	        android:src = "@android:drawable/ic_menu_manage"
+	        />
+	    
+	</LinearLayout>
+	    
  
     <!--  create Tabs -->
     <!-- 
@@ -220,6 +297,6 @@
     </TabHost>
     -->
 
-	
+
 
 </LinearLayout>
