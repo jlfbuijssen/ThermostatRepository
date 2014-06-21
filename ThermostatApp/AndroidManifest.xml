@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.thermostatapp.WeekProgramActivity"
+            android:label="@string/title_activity_week_program_acitivity" >
+        </activity>
+        <activity
+            android:name="com.example.thermostatapp.PreferencesActivity"
+            android:label="@string/title_activity_preferences" >
+        </activity>
     </application>
 
 </manifest>
