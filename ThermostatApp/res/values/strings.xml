@@ -3,5 +3,17 @@
 
     <string name="app_name">ThermostatApp</string>
     <string name="hello_world">Hello world!</string>
+    <string name= "str_temperature">23.1</string>
+    <string name= "str_celcius_unit">&#x2103;</string>
+    <string name= "str_farenheit_unit">F</string>
+    <string name= "str_date"> 21 June 2014</string>
+    <string name= "str_day">Satureday</string>
+    <string name = "str_next_switch">Next switch:</string>
+    <string name = "str_nswitch_time"> 13:00 h </string>
+    
+    <string name = "str_SunIcon"> Day temperature</string>
+    <string name = "str_MoonIcon"> Night temperature</string>
+    
+    <color name= "dark_gray">#ff222222</color>
 
 </resources>

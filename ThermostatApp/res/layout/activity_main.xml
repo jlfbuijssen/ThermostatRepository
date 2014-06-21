@@ -1,8 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context="${packageName}.${activityClass}" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${packageName}.${activityClass}"
+    android:background="@color/dark_gray"
+     >
 
     <!--
           <TextView
@@ -10,60 +13,213 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
     -->
+	<LinearLayout
+	    android:id="@+id/icons_layout"
+	    android:layout_width = "match_parent"
+	    android:layout_height = "wrap_content"
+	    android:gravity = "right"
+	    android:orientation = "horizontal"
+	    android:padding = "20dp">
 
+		<ImageView
+		    android:id="@+id/imageView_sun"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    
+		    android:src="@drawable/sun_icon"
+		    android:contentDescription="@string/str_SunIcon"
+		    android:enabled = "true" />
+		
+		<ImageView
+		    android:id="@+id/imageView_moon"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    
+		    android:src="@drawable/moon_icon_grey"
+		    android:contentDescription="@string/str_MoonIcon"
+		    android:enabled = "false"
+		    />
+	    
+	</LinearLayout>
+	<LinearLayout
+	    android:id="@+id/live_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:gravity="center_horizontal|center_vertical"
+	    android:orientation="horizontal"
+		>
+
+	    <LinearLayout
+	        android:id="@+id/buttons_and_temperature"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        
+	        android:gravity="center_vertical|center_horizontal"
+	        android:orientation="vertical" >
+
+	        <ImageButton
+	            android:id="@+id/temp_up_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="20dp"
+	            android:background = "@color/dark_gray"
+	            android:src="@android:drawable/arrow_up_float"
+	            />
+
+	        <LinearLayout
+	            android:id="@+id/temp_layout"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+
+	            <TextView
+	                android:id="@+id/temp_textview"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="10dp"
+	                android:layout_marginLeft="32dp"
+	                android:layout_marginRight="2dp"
+	                android:layout_marginTop="10dp"
+	                android:text="@string/str_temperature"
+	                android:textSize="40sp" />
+
+	            <TextView
+	                android:id="@+id/unit_temp_textview"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="10dp"
+	                android:layout_marginLeft="0dp"
+	                android:layout_marginRight="32dp"
+	                android:layout_marginTop="10dp"
+	                android:text="@string/str_celcius_unit"
+	                android:textSize="40sp" />
+	        </LinearLayout>
+
+	        <ImageButton
+	            android:id="@+id/temp_down_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="20dp"
+	            android:background="@color/dark_gray"
+	            android:src="@android:drawable/arrow_down_float"/>
+
+	        
+
+	    </LinearLayout>
+
+	    <LinearLayout
+	        android:id="@+id/layout_additional_info"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:orientation="vertical" 
+	        android:gravity = "right|center_vertical">
+	        <LinearLayout
+	            android:id="@+id/date_layout"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
+	             >
+
+	            <TextView
+	                android:id="@+id/date_textview"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/str_date" />
+
+	            <TextView
+	                android:id="@+id/day_textview"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/str_day" 
+	                android:layout_marginBottom="32dp"/>
+	            <TextView
+	                android:id= "@+id/next_switch_textview"
+	                android:layout_width = "wrap_content"
+	                android:layout_height = "wrap_content"
+	                android:text="@string/str_next_switch"
+	                />
+	            <TextView
+	                android:id= "@+id/next_switch_time_textview"
+	                android:layout_width ="wrap_content"
+	                android:layout_height = "wrap_content"
+	                android:text="@string/str_nswitch_time"
+	                />
+	        </LinearLayout>
+	    </LinearLayout>
+	</LinearLayout>
+ 
+    <!--  create Tabs -->
+    <!-- 
     <TabHost
-        android:id="@android:id/tabhost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-
+        android:id 						= "@android:id/tabhost"
+        android:layout_width 			= "match_parent"
+        android:layout_height			= "match_parent"
+        android:layout_alignParentLeft 	= "true"
+        android:layout_alignParentTop	= "true"					>
+        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
+			
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1" >
+				
+
+				<RelativeLayout
+				    android:id="@+id/live"
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent"
+				    android:orientation="horizontal" >
+
+				    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+				</RelativeLayout>
+				
+				<RelativeLayout 
+				    android:id			= "@+id/overview"
+				    android:layout_width = "match_parent"
+				    android:layout_height = "match_parent"
+				    android:orientation = "horizontal"
+				    
+				    >
+				    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WEEK VIEW!!!! :D" />
+				</RelativeLayout>
+				<RelativeLayout 
+				    android:id			= "@+id/settings"
+				    android:layout_width = "match_parent"
+				    android:layout_height = "match_parent"
+				    android:orientation = "horizontal"
+				    
+				    >
+				    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings" />
+				</RelativeLayout>
+            </FrameLayout>
+            
 
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
+
             </TabWidget>
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <LinearLayout
-                    android:id="@+id/tab1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" 
-                    android:orientation = "horizontal" >
-
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Hello Guys! Max was here" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation = "horizontal" >
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tab3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation = "horizontal" >
-                </LinearLayout>
-            </FrameLayout>
-            
         </LinearLayout>
-    </TabHost>
 
-</RelativeLayout>
+    </TabHost>
+    -->
+
+	
+
+</LinearLayout>
