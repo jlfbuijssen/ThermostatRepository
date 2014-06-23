@@ -7,7 +7,8 @@
     <string name="str_celcius_unit">&#x2103;</string>
     <string name="str_farenheit_unit">F</string>
     <string name="str_date"> 21 June 2014</string>
-    <string name="str_day">Satureday</string>
+    <string name="str_day">Saturday</string>
+    <string name = "str_time"> 10:30 h</string>
     <string name="str_next_switch">Next switch:</string>
     <string name="str_nswitch_time"> 13:00 h </string>
     <string name="str_SunIcon"> Day temperature</string>
@@ -25,5 +26,8 @@
 
     <string name="title_activity_week_program_acitivity">WeekProgramAcitivity</string>
     <string name="title_activity_preferences">PreferencesActivity</string>
+    
+    <string name="Two">Night</string>
+    <string name="Three">Overview</string>
 
 </resources>

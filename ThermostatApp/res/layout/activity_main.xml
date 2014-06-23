@@ -16,7 +16,7 @@
 	<LinearLayout
 	    android:id="@+id/icons_layout"
 	    android:layout_width = "match_parent"
-	    android:layout_height = "wrap_content"
+	    android:layout_height = "64dp"
 	    android:gravity = "right"
 	    android:orientation = "horizontal"
 	    android:padding = "8dp">
@@ -24,20 +24,22 @@
 		<ImageView
 		    android:id="@+id/imageView_sun"
 		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
+		    android:layout_height="match_parent"
 		    
 		    android:src="@drawable/sun_icon"
 		    android:contentDescription="@string/str_SunIcon"
-		    android:enabled = "true" />
+		    android:enabled = "true"
+		    android:adjustViewBounds="true" />
 		
 		<ImageView
 		    android:id="@+id/imageView_moon"
 		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
+		    android:layout_height="match_parent"
 		    
 		    android:src="@drawable/moon_icon_grey"
 		    android:contentDescription="@string/str_MoonIcon"
 		    android:enabled = "false"
+		    android:adjustViewBounds="true"
 		    />
 		<TextView
 		    android:id= "@+id/textView_manualToggle"
@@ -148,6 +150,7 @@
 	        android:layout_weight="1"
 	        android:orientation="vertical" 
 	        android:gravity = "right|center_vertical">
+	        
 	        <LinearLayout
 	            android:id="@+id/date_layout"
 	            android:layout_width="wrap_content"
@@ -158,21 +161,29 @@
 	             >
 
 	            <TextView
-	                android:id="@+id/date_textview"
+	                android:id="@+id/time_textview"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:text="@string/str_date"
+	                android:text="@string/str_time" 
 	                android:textColor= "@color/white"
-	                android:textSize = "18sp" />
-
+	                android:textSize = "24sp"/>
 	            <TextView
 	                android:id="@+id/day_textview"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:text="@string/str_day" 
-	                android:layout_marginBottom="32dp"
 	                android:textColor= "@color/white"
 	                android:textSize = "16sp"/>
+	            <TextView
+	                android:id="@+id/date_textview"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/str_date"
+	                android:textColor= "@color/white"
+	                android:textSize = "16sp" 
+	                android:layout_marginBottom="32dp"/>
+
+	            
 	            <TextView
 	                android:id= "@+id/next_switch_textview"
 	                android:layout_width = "wrap_content"
