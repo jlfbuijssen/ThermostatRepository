@@ -12,6 +12,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,8 +29,6 @@ public class FragmentTab1 extends Fragment {
 	WeekProgram wkpg = new WeekProgram();
 	ArrayList<Switch> switches = new ArrayList<Switch>();
 	String day = "";
-	String output = "";
-	int inte = new Integer(0); // cant you just assign this integer to 0? like: int inte = 0;
 	
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container, 
 	                           Bundle savedInstanceState){
@@ -39,21 +38,9 @@ public class FragmentTab1 extends Fragment {
             public void run() {
               try {
 				try {
-					wkpg = HeatingSystem.getWeekProgram();
 					String day = HeatingSystem.get("day");
 					switches = HeatingSystem.getSwitchesDay(wkpg, day, "day");
-					
-					output = "";
-					
-					for (int i = 0; i < switches.size(); i++) {
-						output = output + (Integer.toString(i) + ": ");
-						output = output + (switches.get(i).getTime() + " status: " + Boolean.toString(switches.get(i).state) +"\n");
-						System.out.println(output);
-					}
-				
-			    	        
-			    	        	
-					inte = switches.size();
+
 					
 					
 				} catch (CorruptWeekProgramException e) {
@@ -87,10 +74,53 @@ public class FragmentTab1 extends Fragment {
 	    			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 	    	                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-            TextView textview = (TextView) view.findViewById(R.id.tabtextview);  
-            textview.setLayoutParams(params1);
-      		textview.setText(output);
-	
+	    			final LinearLayout lm = (LinearLayout) view.findViewById(R.id.linearMain);
+	    			
+	    			int num = 1;
+					for (int i = 0; i < switches.size(); i++) {
+						
+						if (switches.get(i).getType().equals("day")) {
+							
+							LinearLayout ll = new LinearLayout(view.getContext());
+				            ll.setOrientation(LinearLayout.HORIZONTAL);
+				            
+				            String status = "OFF";
+				            
+				            if (switches.get(i).getState() == true) {
+				            	status = "ON";
+				            }
+							
+							Button changeSwitchButton = new Button(view.getContext());
+							changeSwitchButton.setId(i + 100);
+							changeSwitchButton.setText("Set Time");
+							changeSwitchButton.setBackgroundColor(Color.rgb(70, 80, 90));
+							
+							TextView textview = new TextView(view.getContext());
+							textview.setLayoutParams(params1);
+							textview.setId(i + 50);
+							textview.setText("Switch " + num + ": " + switches.get(i).getTime() + " - Status: " + status);
+							
+							ll.addView(textview);
+
+							ll.addView(changeSwitchButton,params);
+							
+//							changeSwitchButton = ((Button) view.findViewById(i + 100));
+//							changeSwitchButton.setOnClickListener(new View.OnClickListener() {
+//						        public void onClick(View view) {
+//						            Toast.makeText(view.getContext(),
+//						                    "Button clicked index = " + id_, Toast.LENGTH_SHORT)
+//						                    .show();
+							
+							lm.addView(ll);
+							num++;
+						}
+					}
+			
+
+//            TextView textview = (TextView) view.findViewById(R.id.tabtextview);  
+//            textview.setLayoutParams(params1);
+//      		textview.setText(output);
+//	
 		
 	    }
     }

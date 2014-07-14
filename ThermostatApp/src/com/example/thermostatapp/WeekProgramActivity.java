@@ -6,6 +6,7 @@ import org.thermostatapp.util.WeekProgram;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -73,5 +74,18 @@ Button getdata, putdata;
 			}
 		});
 		
+    }
+    
+    /**
+     * Create Intends
+     */
+    
+    public void invokeLiveActivity(View view){
+    	Intent intent = new Intent(this, MainActivity.class);
+    	startActivity(intent);
+    }
+    public void invokePreferencesActivity(View view){
+    	Intent intent = new Intent(this, PreferencesActivity.class);
+    	startActivity(intent);
     }
 }

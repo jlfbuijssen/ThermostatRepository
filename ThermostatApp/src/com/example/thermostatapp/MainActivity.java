@@ -4,7 +4,9 @@ import java.net.ConnectException;
 import java.util.concurrent.ExecutionException;
 
 import org.thermostatapp.util.HeatingSystem;
+
 import com.example.thermostatapp.R.color;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ public class MainActivity extends Activity {
 	String time;
 	boolean manualSetting;
 	Handler mainHandler;
-	int dateUpdateDelay;
+	int updateDelay;
 
 	// Navigation Buttons
 	ImageButton weekProgramNav, preferencesNav;
@@ -57,21 +59,6 @@ public class MainActivity extends Activity {
 		
 		channel = new Communication();
 		
-		new Thread(new Runnable() {
-
-			public void run() {
-				try {
-					currentTemperature = 10 * Double.parseDouble(HeatingSystem
-							.get("currentTemperature"));
-				} catch (ConnectException | IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					Log.w("[GET]", e);
-				}
-			}
-			
-		}).start();
-
 		currentTemperature = 210;
 		setTemperature = 220;
 		manualTemperature = 0;
@@ -86,8 +73,8 @@ public class MainActivity extends Activity {
 		mainHandler = new Handler();
 		mainHandler.postDelayed(mainRunnable, 100);
 
-		// UI update delay in ms
-		dateUpdateDelay = 1800;
+		// UI update delay in milliseconds
+		updateDelay = 1800;
 		
 		
 
@@ -95,7 +82,7 @@ public class MainActivity extends Activity {
 		 * Init views:
 		 */
 
-		// Init textviews:
+		// Init TextViews:
 
 		// Setting icons
 		dayTempSettingView = (ImageView) findViewById(R.id.imageView_sun);
@@ -123,11 +110,13 @@ public class MainActivity extends Activity {
 
 		weekProgramNav = (ImageButton) findViewById(R.id.imageButton_weekProgram);
 		preferencesNav = (ImageButton) findViewById(R.id.imageButton_preferences);
-
+		
+		
 	}
 
 	public void increaseTemperature(View view) {
-		if (manualTemperature == currentTemperature) {
+		/*
+		if (manualTemperature == currentTemperature) {\
 			manualTemperature += 0.1;
 		} else if (manualTemperature != currentTemperature) {
 			manualTemperature = currentTemperature + 0.1;
@@ -138,11 +127,28 @@ public class MainActivity extends Activity {
 		} else if (manualTemperature != setTemperature) {
 			manualSetting = true;
 		}
-
+		*/
+		
+		try {
+			currentTemperature = Double.parseDouble(channel.getCurrentTemperature());
+		} catch (NumberFormatException | InterruptedException
+				| ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Extra hassle because of double type
+		currentTemperature *= 10;
+		currentTemperature ++;
+		currentTemperature /= 10;
+		
+		String t = String.format("%.1f", currentTemperature);
+		channel.setCurrentTemperature(t);
+		mainHandler.postDelayed(mainRunnable, 10);
 	}
 
 	public void decreaseTemperature(View view) {
-		if (manualTemperature == currentTemperature) {
+		/*if (manualTemperature == currentTemperature) {
 			manualTemperature -= 0.1;
 		} else if (manualTemperature != currentTemperature) {
 			manualTemperature = currentTemperature - 0.1;
@@ -152,7 +158,25 @@ public class MainActivity extends Activity {
 			manualSetting = false;
 		} else if (manualTemperature != setTemperature) {
 			manualSetting = true;
+		}*/
+		
+		try {
+			currentTemperature = Double.parseDouble(channel.getCurrentTemperature());
+		} catch (NumberFormatException | InterruptedException
+				| ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		//Extra hassle because of double type
+		currentTemperature *= 10;
+		currentTemperature --;
+		currentTemperature /= 10;
+		
+		String t = String.format("%.1f", currentTemperature);
+		Log.i("Temperature", t);
+		channel.setCurrentTemperature(t);
+		mainHandler.postDelayed(mainRunnable,  10);
 	}
 
 
@@ -207,6 +231,8 @@ public class MainActivity extends Activity {
 			//Debug code:
 			//Log.i("[TIME-TEST]", "t should give a time string: " + t);
 			
+			
+			
 			/**
 			 * Update Text views
 			 */
@@ -222,7 +248,7 @@ public class MainActivity extends Activity {
 			
 			// foobar();
 			/* makes the runnable re-run: */
-			mainHandler.postDelayed(this, dateUpdateDelay);
+			mainHandler.postDelayed(this, updateDelay);
 		}
 	};
 

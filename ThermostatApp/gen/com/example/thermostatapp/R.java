@@ -1027,6 +1027,7 @@ containing a value of this type.
         public static final int imageView_moon=0x7f05003e;
         public static final int imageView_sun=0x7f05003d;
         public static final int layout_additional_info=0x7f050048;
+        public static final int linearMain=0x7f050057;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int live_layout=0x7f050041;
@@ -1058,7 +1059,7 @@ containing a value of this type.
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int tabtextview=0x7f050057;
+        public static final int tabtextview=0x7f050058;
         public static final int temp_down_button=0x7f050047;
         public static final int temp_layout=0x7f050044;
         public static final int temp_textview=0x7f050045;
