@@ -1,14 +1,14 @@
 package com.example.thermostatapp;
 
-import java.net.ConnectException;
 import java.util.concurrent.ExecutionException;
 
-import org.thermostatapp.util.HeatingSystem;
+import org.thermostatapp.util.WeekProgram;
 
 import com.example.thermostatapp.R.color;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -21,10 +21,11 @@ public class MainActivity extends Activity {
 
 	double currentTemperature, manualTemperature, setTemperature;
 	String sCurrentTemp, sManualTemp, sSetTemp;
-	String time;
+	String time, day, state;
 	boolean manualSetting;
-	Handler mainHandler;
-	int updateDelay;
+	Handler mainHandler, dataHandler;
+	long updateDelay;
+	WeekProgram wpg;
 
 	// Navigation Buttons
 	ImageButton weekProgramNav, preferencesNav;
@@ -67,17 +68,23 @@ public class MainActivity extends Activity {
 		sManualTemp = String.format("%.1f", manualTemperature * 0.1);
 		sSetTemp = String.format("%.1f", setTemperature * 0.1);
 
+		day = "Monday";
+		time = "00:00";
+		state = "on";
+		
 		// TODO check all variables in this method.
 		manualSetting = false;
 
 		mainHandler = new Handler();
-		mainHandler.postDelayed(mainRunnable, 100);
+		mainHandler.postDelayed(mainRunnable, 0);
+		dataHandler = new Handler();
+		
 
 		// UI update delay in milliseconds
-		updateDelay = 1800;
+		updateDelay = 100;
+		Thread mainRunnableThread = new Thread(dataRunnable);
+		mainRunnableThread.start();
 		
-		
-
 		/**
 		 * Init views:
 		 */
@@ -144,7 +151,10 @@ public class MainActivity extends Activity {
 		
 		String t = String.format("%.1f", currentTemperature);
 		channel.setCurrentTemperature(t);
-		mainHandler.postDelayed(mainRunnable, 10);
+		mainHandler.removeCallbacks(mainRunnable);
+		dataHandler.removeCallbacks(dataRunnable);
+		mainHandler.postDelayed(mainRunnable, 0);
+		dataHandler.postDelayed(dataRunnable, 0);
 	}
 
 	public void decreaseTemperature(View view) {
@@ -176,7 +186,10 @@ public class MainActivity extends Activity {
 		String t = String.format("%.1f", currentTemperature);
 		Log.i("Temperature", t);
 		channel.setCurrentTemperature(t);
-		mainHandler.postDelayed(mainRunnable,  10);
+		mainHandler.removeCallbacks(mainRunnable);
+		dataHandler.removeCallbacks(dataRunnable);
+		mainHandler.postDelayed(mainRunnable, 0);
+		dataHandler.postDelayed(dataRunnable, 0);
 	}
 
 
@@ -206,28 +219,16 @@ public class MainActivity extends Activity {
 
 	/**
 	 * This runnable is used to update the date and day, it will run every
-	 * <code>dateUpdateDelay</code> miliseconds
+	 * <code>updateDelay</code> miliseconds
 	 */
 	private Runnable mainRunnable = new Runnable() {
 		@Override
 		public void run() {
-			String t = "";
-			String d = "";
-			String cTemp = "";
-			String s = "";
-			
+					
 			//Debug code:
 			//Log.i("[TIME-TEST]", "t should be empty: " + t);
 			
-			try {
-				t = channel.getTime();
-				d = channel.getDay();
-				cTemp = channel.getCurrentTemperature();
-				s = channel.getWeekProgramState();
-			} catch (InterruptedException | ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			//Debug code:
 			//Log.i("[TIME-TEST]", "t should give a time string: " + t);
 			
@@ -237,13 +238,15 @@ public class MainActivity extends Activity {
 			 * Update Text views
 			 */
 			
-			timeView.setText(t);
-			dayView.setText(d);
-			temperatureView.setText(cTemp);
-			if(s.equals("on")){
-				vacationSettingView.setTextColor(color.dark_gray);
+			timeView.setText(time);
+			dayView.setText(day);
+			temperatureView.setText(sCurrentTemp);
+			//Log.d("s == ", s);
+			//Log.d("b == ", Boolean.toString(!s.equals("on")));
+			if(state.equals("on")){
+				vacationSettingView.setTextColor(getResources().getColor(R.color.light_gray));
 			} else {
-				vacationSettingView.setTextColor(color.white);
+				vacationSettingView.setTextColor(getResources().getColor(R.color.white));
 			}
 			
 			// foobar();
@@ -251,6 +254,41 @@ public class MainActivity extends Activity {
 			mainHandler.postDelayed(this, updateDelay);
 		}
 	};
+	
+	private Runnable dataRunnable = new Runnable() {
 
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			String[] s = updateData();
+			time = s[0];
+			day = s[1];
+			sCurrentTemp = s[2];
+			state = s[3];
+			
+			
+			
+			dataHandler.postDelayed(this, updateDelay);
+		}
+		
+	};
+
+	String[] updateData(){
+		String[] s = new String[4];
+		try {
+			s[0] = channel.getTime();
+			s[1] = channel.getDay();
+			s[2] = channel.getCurrentTemperature();
+			s[3] = channel.getWeekProgramState();
+			//Log.d("s == ", s);
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		return s;
+	}
+	
 	
 }

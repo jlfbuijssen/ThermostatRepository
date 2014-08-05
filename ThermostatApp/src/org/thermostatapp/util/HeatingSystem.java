@@ -28,10 +28,10 @@ public class HeatingSystem {
 	//public static String BASE_ADDRESS = "http://10.0.2.2:8080/test";
 	//public static String BASE_ADDRESS = "http://192.168.2.3:8080/test"; // changed ip to local Ip of Jeffrey
 	//Created new public addresses:
-	public static String BASE_ADDRESS = "http://wwwis.win.tue.nl:10007/";
-	public static String WEEK_PROGRAM_ADDRESS = "http://wwwis.win.tue.nl:10007/weekProgram";
+	public static String BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/7";
+	public static String WEEK_PROGRAM_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/7";
 	//public static String WEEK_PROGRAM_ADDRESS = "http://10.0.2.2:8080/test/weekProgram";
-	//public static String WEEK_PROGRAM_ADDRESS = "http://192.168.2.3:8080/test/weekProgram"; // changed ip to Jeffrey's local ip.
+	//public static String WEEK_PROGRAM_ADDRESS = "http://192.168.2.3:8080/tesst/weekProgram"; // changed ip to Jeffrey's local ip.
 	private final static int TIME_OUT = 10000; // in milliseconds.
 
 	/**

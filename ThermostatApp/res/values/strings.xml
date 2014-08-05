@@ -8,7 +8,7 @@
     <string name="str_farenheit_unit">F</string>
     <string name="str_date"> 21 June 2014</string>
     <string name="str_day">Saturday</string>
-    <string name = "str_time"> 10:30 h</string>
+    <string name ="str_time"> 10:30 h</string>
     <string name="str_next_switch">Next switch:</string>
     <string name="str_nswitch_time"> 13:00 h </string>
     <string name="str_SunIcon"> Day temperature</string>
@@ -19,10 +19,10 @@
     <string name="str_vacationToggle"> V </string>
 
     <color name="dark_gray">#ff333333</color>
-    <color name="light_gray">#aa666666</color>
+    <color name="light_gray">#66555555</color>
     <color name="black">#ff000000</color>
     <color name="holo_dark_blue">#ff1095dd</color>
-    <color name="white"> #ffffffff</color>
+    <color name="white"> #ffffff</color>
 
     <string name="title_activity_week_program_acitivity">WeekProgramAcitivity</string>
     <string name="title_activity_preferences">PreferencesActivity</string>
