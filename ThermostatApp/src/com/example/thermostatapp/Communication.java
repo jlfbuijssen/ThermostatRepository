@@ -1,12 +1,16 @@
 package com.example.thermostatapp;
 
+import java.io.IOException;
 import java.net.ConnectException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import org.thermostatapp.util.CorruptWeekProgramException;
 import org.thermostatapp.util.HeatingSystem;
 import org.thermostatapp.util.InvalidInputValueException;
 import org.thermostatapp.util.WeekProgram;
+import org.thermostatapp.util.Switch;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -56,6 +60,14 @@ public class Communication {
 		return new DownloadWeekProgram().execute().get();
 	}
 
+	public ArrayList<Switch> getSwitchToday() throws XmlPullParserException, IOException, CorruptWeekProgramException, InterruptedException, ExecutionException {
+		return HeatingSystem.getSwitchesDay(getWeekProgram(), getDay(), null);
+	}
+			
+	/**
+	 * Set Communicators:
+	 */
+	
 	public void setTime(String time) {
 		try {
 			putRequest("time", time);
